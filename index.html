@@ -15,7 +15,8 @@
                     colors: {
                         'ming': '#42757E', 
                         'sda-blue': '#003B5C',
-                        'sda-dark': '#002938' 
+                        'sda-dark': '#002938',
+                        'sda-teal': '#008097' /* Official SDA Vertical Bar Color */
                     }
                 }
             }
@@ -25,32 +26,43 @@
         body { font-family: 'Noto Sans', sans-serif; overflow-x: hidden; }
         .scripture-font { font-family: 'Libre Baskerville', serif; }
         .hero-overlay { background: linear-gradient(to right, rgba(0,41,56,0.9), rgba(0,41,56,0.4)); }
-        /* Hide scrollbar for side nav but keep functionality */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Official SDA Sidebar Widths */
+        .sda-sidebar { width: 60px; }
+        @media (min-width: 768px) { .sda-sidebar { width: 95px; } }
+
+        /* Layout shift to prevent content overlap */
+        .layout-shift { margin-right: 60px; }
+        @media (min-width: 768px) { .layout-shift { margin-right: 95px; } }
+
+        /* Magic blend for white-background logos */
+        .blend-multiply { mix-blend-mode: multiply; }
     </style>
 </head>
 <body class="bg-white text-gray-800">
 
-    <div class="fixed right-0 top-1/3 z-[100] flex flex-col gap-1 translate-x-1 hover:translate-x-0 transition-transform duration-300">
-        <a href="#" class="bg-ming text-white p-4 rounded-l-lg shadow-lg flex items-center gap-3 group">
-            <i class="fas fa-video"></i>
-            <span class="max-w-0 overflow-hidden group-hover:max-w-[100px] transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest">Live Now</span>
-        </a>
-        <a href="#" class="bg-sda-blue text-white p-4 rounded-l-lg shadow-lg flex items-center gap-3 group border-t border-white/10">
-            <i class="fas fa-book-open"></i>
-            <span class="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest">Lesson Study</span>
-        </a>
-        <a href="#" class="bg-sda-dark text-white p-4 rounded-l-lg shadow-lg flex items-center gap-3 group border-t border-white/10">
-            <i class="fas fa-hands-praying"></i>
-            <span class="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest">Prayer Request</span>
-        </a>
-        <a href="https://www.youtube.com/@NESDAC" target="_blank" class="bg-[#FF0000] text-white p-4 rounded-l-lg shadow-lg flex items-center gap-3 group border-t border-white/10">
-            <i class="fab fa-youtube"></i>
-            <span class="max-w-0 overflow-hidden group-hover:max-w-[100px] transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest">YouTube</span>
-        </a>
+    <div class="fixed right-0 top-0 h-full sda-teal bg-sda-teal z-[100] flex flex-col items-center py-10 shadow-2xl border-l border-white/10 sda-sidebar">
+        <div class="w-full px-2 flex justify-center mb-12">
+            <img src="download.png" class="w-12 h-12 md:w-20 md:h-20 object-contain blend-multiply" alt="SDA Symbol">
+        </div>
+        
+        <div class="flex flex-col gap-2 w-full items-center">
+            <a href="#" class="w-10 h-10 md:w-14 md:h-14 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all group relative">
+                <i class="fas fa-video text-xs md:text-base"></i>
+                <span class="absolute right-full mr-4 bg-sda-dark text-[9px] uppercase font-bold p-2 rounded hidden group-hover:block whitespace-nowrap">Live Stream</span>
+            </a>
+            <a href="#" class="w-10 h-10 md:w-14 md:h-14 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all group relative">
+                <i class="fas fa-book-open text-xs md:text-base"></i>
+                <span class="absolute right-full mr-4 bg-sda-dark text-[9px] uppercase font-bold p-2 rounded hidden group-hover:block whitespace-nowrap">Lesson Study</span>
+            </a>
+            <a href="#" class="w-10 h-10 md:w-14 md:h-14 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all group relative">
+                <i class="fas fa-hands-praying text-xs md:text-base"></i>
+                <span class="absolute right-full mr-4 bg-sda-dark text-[9px] uppercase font-bold p-2 rounded hidden group-hover:block whitespace-nowrap">Prayer</span>
+            </a>
+        </div>
     </div>
 
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-[90]">
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[90] layout-shift">
         <div class="bg-ming text-white text-[10px] py-2 px-6 font-bold uppercase tracking-[0.2em] flex justify-between items-center">
             <span>Official Website of the Nairobi East SDA Church</span>
             <div class="flex gap-4">
@@ -76,112 +88,56 @@
         </nav>
     </header>
 
-    <section class="relative min-h-[80vh] flex items-center overflow-hidden">
-        <img src="NESDAC-scaled.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Church Background">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 text-white">
-            <div>
-                <h3 class="text-ming font-bold uppercase text-xs tracking-[0.4em] mb-4">Established in Nairobi</h3>
-                <h2 class="text-5xl lg:text-7xl font-black mb-8 leading-tight">Building <br><span class="text-ming italic scripture-font font-normal">Characters</span> <br>for Eternity.</h2>
-                <p class="text-gray-300 text-lg mb-10 leading-relaxed max-w-lg">
-                    Join us this Sabbath as we unite to proclaim the Three Angels' Messages of Revelation 14:6-12 to our community and the world.
-                </p>
-                <div class="flex gap-4">
-                    <button class="bg-ming text-white px-10 py-5 rounded font-bold uppercase text-[10px] tracking-widest shadow-xl">Join Us Live</button>
-                    <button class="bg-white/10 backdrop-blur border border-white/20 px-10 py-5 rounded font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-sda-dark transition">Weekly Bulletin</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-gray-50 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
-            <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-ming">
-                <div class="w-12 h-12 bg-ming/10 text-ming rounded-lg flex items-center justify-center mb-6"><i class="fas fa-bible text-xl"></i></div>
-                <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">The Everlasting Gospel</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Centering our worship on the love of God and the saving grace of Jesus Christ for all people.</p>
-            </div>
-            <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-sda-blue">
-                <div class="w-12 h-12 bg-sda-blue/10 text-sda-blue rounded-lg flex items-center justify-center mb-6"><i class="fas fa-dove text-xl"></i></div>
-                <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">Three Angels' Messages</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Faithfully sharing the urgent warning and hope of Revelation 14 within our territory.</p>
-            </div>
-            <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-ming">
-                <div class="w-12 h-12 bg-ming/10 text-ming rounded-lg flex items-center justify-center mb-6"><i class="fas fa-church text-xl"></i></div>
-                <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">The Remnant Church</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Developing Christ-like characters and uniting believers with the global mission of the SDA Church.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black text-sda-blue mb-4">Ministry <span class="text-ming">Departments</span></h2>
-                <p class="text-gray-500 font-medium">Serving the diverse needs of our church family and community.</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="group p-8 border border-gray-100 rounded-xl hover:bg-ming hover:text-white transition-all cursor-pointer">
-                    <i class="fas fa-users text-2xl mb-4 text-ming group-hover:text-white transition"></i>
-                    <h5 class="font-bold uppercase text-[10px] tracking-widest">Adventist Men (AMO)</h5>
-                </div>
-                <div class="group p-8 border border-gray-100 rounded-xl hover:bg-ming hover:text-white transition-all cursor-pointer">
-                    <i class="fas fa-female text-2xl mb-4 text-ming group-hover:text-white transition"></i>
-                    <h5 class="font-bold uppercase text-[10px] tracking-widest">Women Ministries</h5>
-                </div>
-                <div class="group p-8 border border-gray-100 rounded-xl hover:bg-ming hover:text-white transition-all cursor-pointer">
-                    <i class="fas fa-child text-2xl mb-4 text-ming group-hover:text-white transition"></i>
-                    <h5 class="font-bold uppercase text-[10px] tracking-widest">Children & Youth</h5>
-                </div>
-                <div class="group p-8 border border-gray-100 rounded-xl hover:bg-ming hover:text-white transition-all cursor-pointer">
-                    <i class="fas fa-music text-2xl mb-4 text-ming group-hover:text-white transition"></i>
-                    <h5 class="font-bold uppercase text-[10px] tracking-widest">Music Ministry</h5>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-white border-t border-gray-50">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <div class="absolute -top-4 -left-4 w-24 h-24 bg-ming/10 rounded-full -z-10"></div>
-                <div class="aspect-square bg-gray-100 rounded-2xl overflow-hidden shadow-xl border-8 border-white">
-                    <img src="IMG_2259-1-scaled-1920x1080.jpg" class="w-full h-full object-cover" alt="Pastoral Leadership">
-                </div>
-            </div>
-            <div>
-                <h3 class="text-ming font-bold uppercase text-xs tracking-widest mb-4">Pastoral Message</h3>
-                <h2 class="text-4xl font-black text-sda-blue mb-6 leading-tight">A Community Rooted in <span class="text-ming">Faith & Love.</span></h2>
-                <p class="text-gray-600 mb-6 italic scripture-font text-lg leading-relaxed">
-                    "Welcome to our home. Whether you are seeking a place to worship or a family to belong to, Nairobi East is open to you."
-                </p>
-                <button class="border-b-2 border-ming text-sda-blue font-bold uppercase text-[10px] tracking-[0.2em] pb-1 hover:text-ming transition">Meet our Elders</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-sda-dark py-24 px-6 text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h3 class="text-ming font-bold uppercase text-xs tracking-widest mb-6">Faithful Stewardship</h3>
-                <h2 class="text-4xl font-bold italic scripture-font mb-8">"Bring the whole tithes..."</h2>
-                <div class="flex items-center gap-6 bg-white/5 p-6 rounded-2xl border border-white/10 w-fit">
-                    <div class="w-12 h-12 bg-[#2EB400] text-white rounded flex items-center justify-center font-black italic">M</div>
-                    <div>
-                        <p class="text-[10px] text-ming font-bold uppercase">M-Pesa Paybill</p>
-                        <p class="text-2xl font-black">837150</p>
+    <main class="layout-shift">
+        <section class="relative min-h-[80vh] flex items-center overflow-hidden">
+            <img src="NESDAC-scaled.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Church Background">
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 text-white">
+                <div>
+                    <h3 class="text-ming font-bold uppercase text-xs tracking-[0.4em] mb-4">Established in Nairobi</h3>
+                    <h2 class="text-5xl lg:text-7xl font-black mb-8 leading-tight">Building <br><span class="text-ming italic scripture-font font-normal">Characters</span> <br>for Eternity.</h2>
+                    <p class="text-gray-300 text-lg mb-10 leading-relaxed max-w-lg">
+                        Join us this Sabbath as we unite to proclaim the Three Angels' Messages of Revelation 14:6-12 to our community and the world.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="bg-ming text-white px-10 py-5 rounded font-bold uppercase text-[10px] tracking-widest shadow-xl">Join Us Live</button>
+                        <button class="bg-white/10 backdrop-blur border border-white/20 px-10 py-5 rounded font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-sda-dark transition">Weekly Bulletin</button>
                     </div>
                 </div>
             </div>
-            <div class="bg-white text-sda-dark p-12 rounded-3xl shadow-2xl">
-                <h4 class="text-xl font-bold mb-6 italic scripture-font text-sda-blue">Give Online</h4>
-                <p class="text-sm text-gray-500 mb-6 font-medium">Support church development and evangelism through our secure payment channels.</p>
-                <button class="w-full bg-ming text-white py-4 rounded font-bold uppercase text-xs tracking-widest shadow-lg hover:bg-sda-blue transition">Submit Offering</button>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-white pt-24 pb-12 px-6">
+        <section class="py-24 bg-gray-50 px-6">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+                <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-ming">
+                    <div class="w-12 h-12 bg-ming/10 text-ming rounded-lg flex items-center justify-center mb-6"><i class="fas fa-bible text-xl"></i></div>
+                    <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">The Everlasting Gospel</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Centering our worship on the love of God and the saving grace of Jesus Christ for all people.</p>
+                </div>
+                <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-sda-blue">
+                    <div class="w-12 h-12 bg-sda-blue/10 text-sda-blue rounded-lg flex items-center justify-center mb-6"><i class="fas fa-dove text-xl"></i></div>
+                    <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">Three Angels' Messages</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Faithfully sharing the urgent warning and hope of Revelation 14 within our territory.</p>
+                </div>
+                <div class="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-ming">
+                    <div class="w-12 h-12 bg-ming/10 text-ming rounded-lg flex items-center justify-center mb-6"><i class="fas fa-church text-xl"></i></div>
+                    <h4 class="font-bold text-sda-blue text-sm uppercase mb-4 tracking-wider">The Remnant Church</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Developing Christ-like characters and uniting believers with the global mission of the SDA Church.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 bg-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <h5 class="text-ming font-bold uppercase text-[10px] tracking-[0.3em] mb-6">About Our Mission</h5>
+                <p class="text-xl text-gray-600 leading-relaxed font-medium">
+                    Nairobi East Seventh-day Adventist Church is a vibrant faith community dedicated to sharing the everlasting gospel. We strive to be a lighthouse in Nairobi, fostering spiritual growth and preparing a people for the glorious appearing of our Lord Jesus Christ.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white pt-24 pb-12 px-6 layout-shift border-t border-gray-100">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 border-b border-gray-100 pb-16">
             <div class="max-w-sm">
                 <img src="download.png" class="h-12 mb-6 opacity-40" alt="SDA Symbol">
@@ -206,18 +162,13 @@
                 </div>
             </div>
         </div>
-<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
-        © 2025 Seventh-day Adventist Church, Nairobi East
-    </span>
-    <div class="flex items-center gap-2 group">
-        <span class="text-[9px] font-medium text-gray-400 uppercase tracking-widest">Powered by</span>
-        <span class="text-[10px] font-black text-ming tracking-tighter group-hover:text-sda-blue transition cursor-default">
-            ORLANTECH <span class="font-light">INNOVATIONS</span>
-        </span>
-    </div>
-</div>
-
+        <div class="max-w-7xl mx-auto mt-12 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex justify-between items-center">
+            <span>© 2025 Seventh-day Adventist Church, Nairobi East</span>
+            <div class="flex gap-4">
+                <span class="text-blue-600 font-black">ORLANTECH INNOVATIONS</span>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
